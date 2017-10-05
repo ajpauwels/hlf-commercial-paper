@@ -25,6 +25,7 @@ asset PaperOwnership identified by ID {
 /** Participants **/
 participant Company identified by name {
   o String name					// Public name of the company (e.g. IBM)
+  o String identifier			// Six character CUSIP identifier
   o Double balance				// Amount of money owned by the company
 }
 
