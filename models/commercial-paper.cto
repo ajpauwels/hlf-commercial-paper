@@ -1,7 +1,7 @@
 /**
  * Commercial paper network model
  */
-namespace fabric.ibm.commercialpaper
+namespace fabric.hyperledger.cp
 
 /** Assets **/
 asset CommercialPaper identified by CUSIP {
@@ -15,7 +15,7 @@ asset CommercialPaper identified by CUSIP {
 }
 
 asset PaperOwnership identified by ID {
-  o String ID					// Concatenation: company-identifier,paper-cusip (e.g. 'fabric.ibm.commercialpaper.Company#ACME,ABCDEF012')
+  o String ID					// Concatenation: company-identifier,paper-cusip (e.g. 'fabric.hyperledger.cp.Company#ACME,ABCDEF012')
   --> CommercialPaper paper		// Paper owned
   --> Company owner				// Company which owns this quantity of this paper
   o Integer quantity			// Amount of paper owned
@@ -45,4 +45,9 @@ transaction PurchasePaper {
   --> Company buyer
   o Integer quantity
   o Integer quantityForSale
-} 
+}
+
+transaction SellPaper {
+  --> PaperOwnership ownership
+  o Integer quantityToSell
+}

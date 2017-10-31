@@ -9,10 +9,18 @@ rule AllAccess {
 	action: ALLOW  
 }
 
+rule NetworkAdmin {
+	description: "All companies should be able to read components of the network"
+	participant: "org.hyperledger.composer.system.NetworkAdmin"
+	operation: ALL
+	resource: "fabric.hyperledger.cp.**"
+	action: ALLOW  
+}
+
 rule AllAccessPaper {
 	description: "Anyone can do anything"
-	participant: "fabric.ibm.commercialpaper.Company"
+	participant: "fabric.hyperledger.cp.Company"
 	operation: ALL
-	resource: "fabric.ibm.commercialpaper.**"
+	resource: "fabric.hyperledger.cp.**"
 	action: ALLOW
 }
